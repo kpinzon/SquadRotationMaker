@@ -5,26 +5,15 @@ import Maps from '../mapData/maps'
 import RotationItem from './rotationItem'
 
 class RotationMakerApp extends React.Component {
+    state = { mapsRotation: [] };
 
-    constructor(props) {
-        super(props);
-        this.state = { mapsRotation: [] };
+    //handle adding map to rotation
+    handleAddMap = (index) => {
 
-        this.handleAddMap = this.handleAddMap.bind(this)
-    }
-
-    handleAddMap = (value) => {
-        let index = Maps.findIndex(map => {
-            return map.layer == value
-        })
-
-        let mapRotationArray = this.state.mapsRotation.slice();
+        let mapRotationArray = [...this.state.mapsRotation]
         mapRotationArray.push(Maps[index]);
         this.setState({mapsRotation: mapRotationArray})
-        setTimeout(() => {
-            console.log("state after", this.state)
-
-        }, 500)
+        
     }
 
     render = () => {
@@ -35,11 +24,12 @@ class RotationMakerApp extends React.Component {
             <Dropdown addMap={this.handleAddMap}/> 
             <ColumnNames />
             {this.state.mapsRotation.map((map) => (
-                <RotationItem key={map.layer} layer={map} />
+                <RotationItem key={Date.now} layer={map} />
             ))}
             </div>
         )
     }
 }
+
 
 export default RotationMakerApp;

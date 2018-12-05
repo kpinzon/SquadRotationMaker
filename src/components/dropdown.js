@@ -1,36 +1,38 @@
 import React from 'react';
 import Maps from '../mapData/maps'
+import { throws } from 'assert';
 
 class Dropdown extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: "Please Select Your Map" };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleAdd = this.handleAdd.bind(this)
+    state = {
+        addButtonDisabled: true
     }
-
-
-    handleChange(event) {
-        this.setState({ value: event.target.value });
+    mapSelectRef = React.createRef();
+    emptyText = "Select a Layer";
+    
+    
+    handleChange = (event) => {
+        this.setState({addButtonDisabled: false})
     }
-
-    handleAdd() {
-        this.props.addMap(this.state.value)
+    
+    handleAdd = () => {
+        this.props.addMap(this.mapSelectRef.current.value)
     }
-
+    
     render = () => {
+       
         return (
             <div>
-                <select value={this.state.value} onChange={this.handleChange} >
-                    <option value={this.state.value} disabled hidden>{this.state.value}</option>
+                <select onChange={this.handleChange} ref={this.mapSelectRef} name="selectLayer">
+                    <option value="empty" hidden>Select a Layer</option>
                     {
-                        Maps.map((map) => (
-                            <option key={map.layer} value={map.layer}>{map.layer}</option>
+                        Maps.map((map, index) => (
+                            <option key={map.layer} value={index}>{map.layer}</option>
                         ))
                     }
                 </select>
-                <button onClick={this.handleAdd}>Add</button>
+
+            
+                <button onClick={this.handleAdd} disabled={this.state.addButtonDisabled}>Add</button>
             </div>
         )
     }
