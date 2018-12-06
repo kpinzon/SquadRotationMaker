@@ -1,38 +1,52 @@
 import React from 'react';
 import Maps from '../mapData/maps'
-import { throws } from 'assert';
+import { Select } from 'antd';
+import { Button } from 'antd';
+const Option = Select.Option;
 
 class Dropdown extends React.Component {
+    
     state = {
-        addButtonDisabled: true
+        addButtonDisabled: true,
+        selectedLayer: null
     }
     mapSelectRef = React.createRef();
     emptyText = "Select a Layer";
     
     
-    handleChange = (event) => {
-        this.setState({addButtonDisabled: false})
+    handleChange = (value) => {
+        this.setState({addButtonDisabled: false, selectedLayer: value})
     }
     
     handleAdd = () => {
-        this.props.addMap(this.mapSelectRef.current.value)
+       
+        this.props.addMap(this.state.selectedLayer)
     }
     
     render = () => {
        
         return (
             <div>
-                <select onChange={this.handleChange} ref={this.mapSelectRef} name="selectLayer">
-                    <option value="empty" hidden>Select a Layer</option>
+                <Select 
+                showSearch
+                onChange={this.handleChange} 
+                ref={this.mapSelectRef} 
+                name="selectLayer"
+                style={{ width: 300 }}
+                optionFilterProp="children"
+                placeholder="Select a Layer"
+                filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                >
+                   
                     {
                         Maps.map((map, index) => (
-                            <option key={map.layer} value={index}>{map.layer}</option>
+                            <Option key={map.layer} value={index}>{map.layer}</Option>
                         ))
                     }
-                </select>
+                </Select>
 
             
-                <button onClick={this.handleAdd} disabled={this.state.addButtonDisabled}>Add</button>
+                <Button style={{marginLeft: 5 }}type="primary" onClick={this.handleAdd} disabled={this.state.addButtonDisabled}>Add</Button>
             </div>
         )
     }

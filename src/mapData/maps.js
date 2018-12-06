@@ -13,15 +13,15 @@ const layers = [
     },
     {
         layer: "Belaya Invasion v3",
-        team1: "BRIT",
-        team2: "RUS",
+        team1: "RUS",
+        team2: "INS",
         attackersId: 'team1'
     },
     {
         layer: "Kokan Invasion v1",
         team1: "RUS",
         team2: "INS",
-        attackersId: 'team1'
+        attackersId: 'team2'
     },
     {
         layer: "Tallil Outskirts RAAS v2",
