@@ -11,6 +11,7 @@ class LayerTable extends React.Component {
     this.columns = [{
       title: 'Actions',
       key: 'actions',
+      width: 160,
       render: (text, record, index) => (
         <span>
           <Button style={{ marginRight: 3 }} ghost type="primary" icon="caret-up" onClick={() => this.props.handleMoveUp(index)}></Button>
@@ -20,19 +21,31 @@ class LayerTable extends React.Component {
       )
     }, {
       title: 'Layer Name',
-      dataIndex: 'layer',
-      key: 'layer',
+      dataIndex: 'name',
+      key: 'name',
     }, {
       title: 'Team ID 1',
-      dataIndex: 'team1',
       key: 'team1',
+      render: (text, record) => (
+          <img alt="team 1" src={record.team1Image} style={{ width: 50, heigth: 25 }}></img>
+      )
     }, {
       title: 'Team ID 2',
       key: 'team2',
-      dataIndex: 'team2',
+      render: (text, record) => (
+        <img alt="team 2" src={record.team2Image} style={{ width: 50, heigth: 25 }}></img>
+    )
     }, {
       title: 'Attacking Team',
-      key: 'action'
+      key: 'attacking',
+      render: (text, record) => {
+        if (record.attackersId === 1) {
+          return <img alt="attackers" src={record.team1Image} style={{ width: 50, heigth: 25 }}></img>
+        }
+        else if (record.attackersId === 2) {
+          return <img alt="attackers" src={record.team2Image} style={{ width: 50, heigth: 25 }}></img>
+        }
+      }
     }, {
       title: 'Warnings',
       key: 'warningMessage',

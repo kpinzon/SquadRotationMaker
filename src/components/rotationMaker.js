@@ -1,21 +1,24 @@
 import React from 'react';
-import Dropdown from './dropdown'
-import ColumnNames from './columnNames'
+import Dropdown from './Dropdown'
+import LayerOptions from './LayerOptions'
 import Maps from '../mapData/maps'
-import RotationItem from './rotationItem'
+import Layers from '../mapData/layers'
 import { Row, Col } from 'antd';
-import LayerTable from "./layerTable";
-import { Button } from 'antd';
+import LayerTable from "./LayerTable";
+
 import 'antd/dist/antd.css';
 
 class RotationMakerApp extends React.Component {
-    state = { mapsRotation: [] };
+    state = { mapsRotation: [], layersToChooseFrom: [], optionRowStyle: {marginBottom: 20, height: 200} };
 
     //handle adding map to rotation
-    handleAddMap = (index) => {
-        
+    handleAddMap = (layer) => {
+        console.log("ADD MAP!!!", layer)
         let mapRotationArray = [...this.state.mapsRotation];
-        mapRotationArray.push({...Maps[index]});
+
+
+
+        mapRotationArray.push({...layer});
         let length = mapRotationArray.length;
         mapRotationArray[length - 1].key = Date.now();
         console.log(mapRotationArray)
@@ -23,6 +26,60 @@ class RotationMakerApp extends React.Component {
         this.checkLayersForIssues(mapRotationArray);
         this.setState({ mapsRotation: mapRotationArray })
 
+    }
+
+    //handles selecting drop down, gets map name, filters through every layer to get layer data of each one
+    handleSelectMap = (index) => {
+        let layersToChoose = [];
+        let mapName = Maps[index];
+
+        Layers.map(layer => {
+            if (layer.name.startsWith(mapName)) {
+                switch (layer.team1) {
+                    case 'US':
+                    layer.team1Image = '/images/US_Flag.png';
+                    break;
+                    case 'GB':
+                    layer.team1Image = '/images/GB_flag.jpg';
+                    break;
+                    case 'INS':
+                    layer.team1Image = '/images/INS_Flag.png';
+                    break;
+                    case 'MIL':
+                    layer.team1Image = '/images/MIL_Flag.png';
+                    break;
+                    case 'RUS':
+                    layer.team1Image = '/images/RUS_Flag.png';
+                    break;
+                    default: 
+                    console.log("default")
+                }
+                switch (layer.team2) {
+                    case 'US':
+                    layer.team2Image = '/images/US_Flag.png';
+                    break;
+                    case 'GB':
+                    layer.team2Image = '/images/GB_flag.jpg';
+                    break;
+                    case 'INS':
+                    layer.team2Image = '/images/INS_Flag.png';
+                    break;
+                    case 'MIL':
+                    layer.team2Image = '/images/MIL_Flag.png';
+                    break;
+                    case 'RUS':
+                    layer.team2Image = '/images/RUS_Flag.png';
+                    break;
+                    default: 
+                    console.log("default")
+                }
+                layersToChoose.push(layer)
+            }
+
+            return layer
+        })
+
+        this.setState({layersToChooseFrom: layersToChoose, optionRowStyle: {marginBottom: 20}} )
     }
 
     handleMoveLayerUpInArray = (index) => {
@@ -80,11 +137,11 @@ class RotationMakerApp extends React.Component {
             layers.map((layer, index) => {
                 if (index === 0) {
                     if (layer.team1 === layers[mapRotationLength - 1].team2 || layer.team2 === layers[mapRotationLength - 1].team1) {
-                        layers[0].warningMessage = "Same Faction As Last Layer"
+                        layers[0].warningMessage = "Same Faction As Very Last Layer"
                     }
 
-                    else if ((layer.attackersId === 'team1' && layers[mapRotationLength - 1].attackersId === 'team2') || (layer.attackersId === 'team2' && layers[mapRotationLength - 1].attackersId === 'team1')) {
-                        layers[0].warningMessage = "Same ATK/DEF Side As Last Layer"
+                    else if ((layer.attackersId === 1 && layers[mapRotationLength - 1].attackersId === 2) || (layer.attackersId === 2 && layers[mapRotationLength - 1].attackersId === 1)) {
+                        layers[0].warningMessage = "Same ATK/DEF As Very Last Layer"
                     }
 
                     else {
@@ -94,17 +151,23 @@ class RotationMakerApp extends React.Component {
 
                 else {
                     if (layer.team1 === layers[index - 1].team2 || layer.team2 === layers[index - 1].team1) {
-                        layers[index].warningMessage = "Same Faction As Prev Layer"
+                        layers[index].warningMessage = "Same Faction On Map Roll"
                     }
 
-                    else if ((layer.attackersId === 'team1' && layers[index - 1].attackersId === 'team2') || (layer.attackersId === 'team2' && layers[index - 1].attackersId === 'team1')) {
-                        layers[index].warningMessage = "Same ATK/DEF Side As Prev Layer"
+                    else if ((layer.attackersId === 1 && layers[index - 1].attackersId === 2) || (layer.attackersId === 2 && layers[index - 1].attackersId === 1)) {
+                        layers[index].warningMessage = "Same ATK/DEF On Map Roll"
+                    }
+
+                    else if (layer.name === layers[index - 1].name)  {
+                        layers[index].warningMessage = "Same Layer as Above"
                     }
 
                     else {
                         delete layers[index].warningMessage
                     }
                 }
+
+                return layer
             })
         }
     }
@@ -113,14 +176,19 @@ class RotationMakerApp extends React.Component {
 
         return (
             <div>
-                <Row type="flex" justify="center">
+                <Row type="flex" justify="center" style={{marginBottom: 20, marginTop: 50}}>
                     <Col>
                         <h1>Squad Rotation Maker</h1>
                     </Col>
                 </Row>
-                <Row type="flex" justify="center">
+                <Row type="flex" justify="center" style={{marginBottom: 20}}>
                     <Col>
-                        <Dropdown addMap={this.handleAddMap} />
+                        <Dropdown addMap={this.handleAddMap} changeSelection={this.handleSelectMap} />
+                    </Col>
+                </Row>
+                <Row type="flex" justify="center" style={this.state.optionRowStyle}>
+                    <Col span={12} >
+                        <LayerOptions layers={this.state.layersToChooseFrom} addMap={this.handleAddMap} />
                     </Col>
                 </Row>
                 <Row type="flex" justify="center">
