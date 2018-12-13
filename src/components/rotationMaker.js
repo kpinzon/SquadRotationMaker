@@ -9,7 +9,7 @@ import LayerTable from "./LayerTable";
 import 'antd/dist/antd.css';
 
 class RotationMakerApp extends React.Component {
-    state = { mapsRotation: [], layersToChooseFrom: [], optionRowStyle: {marginBottom: 20, height: 200} };
+    state = { mapsRotation: [], layersToChooseFrom: [], optionRowStyle: { marginBottom: 20, height: 200 } };
 
     //handle adding map to rotation
     handleAddMap = (layer) => {
@@ -18,7 +18,7 @@ class RotationMakerApp extends React.Component {
 
 
 
-        mapRotationArray.push({...layer});
+        mapRotationArray.push({ ...layer });
         let length = mapRotationArray.length;
         mapRotationArray[length - 1].key = Date.now();
         console.log(mapRotationArray)
@@ -37,41 +37,41 @@ class RotationMakerApp extends React.Component {
             if (layer.name.startsWith(mapName)) {
                 switch (layer.team1) {
                     case 'US':
-                    layer.team1Image = '/images/US_Flag.png';
-                    break;
+                        layer.team1Image = '/images/US_Flag.png';
+                        break;
                     case 'GB':
-                    layer.team1Image = '/images/GB_flag.jpg';
-                    break;
+                        layer.team1Image = '/images/GB_flag.jpg';
+                        break;
                     case 'INS':
-                    layer.team1Image = '/images/INS_Flag.png';
-                    break;
+                        layer.team1Image = '/images/INS_Flag.png';
+                        break;
                     case 'MIL':
-                    layer.team1Image = '/images/MIL_Flag.png';
-                    break;
+                        layer.team1Image = '/images/MIL_Flag.png';
+                        break;
                     case 'RUS':
-                    layer.team1Image = '/images/RUS_Flag.png';
-                    break;
-                    default: 
-                    console.log("default")
+                        layer.team1Image = '/images/RUS_Flag.png';
+                        break;
+                    default:
+                        console.log("default")
                 }
                 switch (layer.team2) {
                     case 'US':
-                    layer.team2Image = '/images/US_Flag.png';
-                    break;
+                        layer.team2Image = '/images/US_Flag.png';
+                        break;
                     case 'GB':
-                    layer.team2Image = '/images/GB_flag.jpg';
-                    break;
+                        layer.team2Image = '/images/GB_flag.jpg';
+                        break;
                     case 'INS':
-                    layer.team2Image = '/images/INS_Flag.png';
-                    break;
+                        layer.team2Image = '/images/INS_Flag.png';
+                        break;
                     case 'MIL':
-                    layer.team2Image = '/images/MIL_Flag.png';
-                    break;
+                        layer.team2Image = '/images/MIL_Flag.png';
+                        break;
                     case 'RUS':
-                    layer.team2Image = '/images/RUS_Flag.png';
-                    break;
-                    default: 
-                    console.log("default")
+                        layer.team2Image = '/images/RUS_Flag.png';
+                        break;
+                    default:
+                        console.log("default")
                 }
                 layersToChoose.push(layer)
             }
@@ -79,7 +79,7 @@ class RotationMakerApp extends React.Component {
             return layer
         })
 
-        this.setState({layersToChooseFrom: layersToChoose, optionRowStyle: {marginBottom: 20}} )
+        this.setState({ layersToChooseFrom: layersToChoose, optionRowStyle: { marginBottom: 20 } })
     }
 
     handleMoveLayerUpInArray = (index) => {
@@ -158,7 +158,7 @@ class RotationMakerApp extends React.Component {
                         layers[index].warningMessage = "Same ATK/DEF On Map Roll"
                     }
 
-                    else if (layer.name === layers[index - 1].name)  {
+                    else if (layer.name === layers[index - 1].name) {
                         layers[index].warningMessage = "Same Layer as Above"
                     }
 
@@ -176,12 +176,12 @@ class RotationMakerApp extends React.Component {
 
         return (
             <div>
-                <Row type="flex" justify="center" style={{marginBottom: 20, marginTop: 50}}>
+                <Row type="flex" justify="center" style={{ marginBottom: 20, marginTop: 50 }}>
                     <Col>
-                        <h1>Squad Rotation Maker</h1>
+                        <h1 style={{ color: "#FFF0CE" }}>Squad Rotation Tool</h1>
                     </Col>
                 </Row>
-                <Row type="flex" justify="center" style={{marginBottom: 20}}>
+                <Row type="flex" justify="center" style={{ marginBottom: 20 }}>
                     <Col>
                         <Dropdown addMap={this.handleAddMap} changeSelection={this.handleSelectMap} />
                     </Col>
@@ -193,12 +193,30 @@ class RotationMakerApp extends React.Component {
                 </Row>
                 <Row type="flex" justify="center">
                     <Col>
-                        <LayerTable 
-                        layerRotation={this.state.mapsRotation}
-                        handleMoveUp={this.handleMoveLayerUpInArray}
-                        handleMoveDown={this.handleMoveLayerDownInArray}
-                        handleRemove={this.handleRemoveLayerInArray}
+                        <LayerTable
+                            layerRotation={this.state.mapsRotation}
+                            handleMoveUp={this.handleMoveLayerUpInArray}
+                            handleMoveDown={this.handleMoveLayerDownInArray}
+                            handleRemove={this.handleRemoveLayerInArray}
                         />
+                    </Col>
+                </Row>
+                <Row type="flex" justify="center" style={{ marginTop: 10 }}>
+                    <Col>
+                        <p style={{ color: "#FFF0CE", width: 900 }}>Reminder: As of 12.1, both Yehorivka Invasions and Narva Invasion v1 have team ID 2 attacking. This can cause same ATK/DEF side issues when going from 1 to 2 (or 2 to 1). Usually best to put these back to back together, if doing invasion rotation</p>
+                    </Col>
+                </Row>
+                <Row type="flex" justify="center" style={{ marginTop: 20 }}>
+                    <Col>
+                        {this.state.mapsRotation.length > 0 ? <h2 style={{ color: "#FFF0CE" }}>Text for Config File</h2> : <span></span>}
+
+                    </Col>
+                </Row>
+                <Row type="flex" justify="center" style={{ paddingBottom: 50 }}>
+                    <Col style={{ backgroundColor: '#FFF', width: 300 }}>
+                        {this.state.mapsRotation.map(layer => (
+                            <span>{layer.name} <br /></span>
+                        ))}
                     </Col>
                 </Row>
             </div>

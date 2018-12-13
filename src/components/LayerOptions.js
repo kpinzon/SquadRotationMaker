@@ -38,6 +38,7 @@ class LayerOptions extends React.Component {
         {this.props.layers.map(layer => (
           <Col key={layer.name}>
             <Card
+            bodyStyle={{backgroundColor: "#d9e8e7 "}}
               key={layer.name}
               style={{ width: 250, marginBottom: 10 }}
               actions={[<span onClick={() => this.showModal(layer)}>View Map</span>, <span onClick={() => this.props.addMap(layer)}>Add</span>]}
@@ -57,7 +58,12 @@ class LayerOptions extends React.Component {
                     <Col span={8}>
                       <img alt="team2Image" src={layer.team2Image} style={{ width: 50, heigth: 25 }}></img>
                     </Col>
+                    <Col>
+                      <span style={{fontSize: 10}}>Faction Info Last Updated: v{layer.factionDataVers}</span>
+                    </Col>
                   </Row>
+
+
                 )}
               />
             </Card>
@@ -74,9 +80,9 @@ class LayerOptions extends React.Component {
             </Button>
               ]}
             >
-              <p>Layer Info As Of Squad Version: {this.state.layerSelected.imageVers}</p>
+              <p>Image As Of Squad Version: {this.state.layerSelected.imageVers}</p>
               <p>Reminder: RAAS layers have random capture points</p>
-              <img alt="layer" style={{width: 600, height: 600}}src={this.state.layerSelected.layerImage}></img>
+              <img alt="layer" style={{ width: 600, height: 600 }} src={this.state.layerSelected.layerImage}></img>
             </Modal>
           </Col>
         ))}

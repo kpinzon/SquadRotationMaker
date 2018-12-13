@@ -63,7 +63,7 @@ class LayerTable extends React.Component {
         dataSource={this.props.layerRotation}
         rowKey={record => record.key}
         pagination={false}
-        style={{ width: 900 }}
+        style={{ width: 900, backgroundColor: "#f5f3f2" }}
       ></Table >
     )
   }
