@@ -418,9 +418,9 @@ const names = [
         "team1": "US",
         "team2": "GB",
         "attackersId": "null",
-        "layerImage": "/images/KamdeshSkirmishv1_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/KamdeshSkirmishv1.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Kohat AAS v1",
@@ -580,45 +580,45 @@ const names = [
         "team1": "RUS",
         "team2": "MIL",
         "attackersId": "null",
-        "layerImage": "/images/MestiaAASv1_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/MestiaAASv1.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Mestia AAS v2",
         "team1": "US",
         "team2": "MIL",
         "attackersId": "null",
-        "layerImage": "/images/MestiaAASv2_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/MestiaAASv2.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Mestia RAAS v1",
         "team1": "US",
         "team2": "MIL",
         "attackersId": "null",
-        "layerImage": "/images/MestiaRAASv1_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/MestiaRAASv1.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Mestia Invasion v1",
         "team1": "RUS",
         "team2": "MIL",
         "attackersId": 1,
-        "layerImage": "/images/MestiaINVv1_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/MestiaINVv1.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Mestia Invasion v2",
         "team1": "US",
         "team2": "MIL",
         "attackersId": 1,
-        "layerImage": "/images/MestiaINVv2_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/MestiaINVv2.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Narva AAS v1",
@@ -778,82 +778,83 @@ const names = [
         "team1": "US",
         "team2": "RUS",
         "attackersId": "null",
-        "layerImage": "/images/YehorivkaAASv1_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/YehorivkaAASv1.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Yehorivka AAS v2",
         "team1": "GB",
         "team2": "RUS",
         "attackersId": "null",
-        "layerImage": "/images/YehorivkaAASv2_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/YehorivkaAASv2.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Yehorivka AAS v3",
         "team1": "GB",
         "team2": "RUS",
         "attackersId": "null",
-        "layerImage": "/images/YehorivkaAASv3_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/YehorivkaAASv3.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Yehorivka AAS v5",
         "team1": "US",
         "team2": "RUS",
         "attackersId": "null",
-        "layerImage": "/images/YehorivkaAASv5_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/YehorivkaAASv5.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Yehorivka RAAS v1",
         "team1": "US",
         "team2": "RUS",
         "attackersId": "null",
-        "layerImage": "/images/YehorivkaRAASv2_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/YehorivkaRAASv1.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Yehorivka RAAS v2",
         "team1": "US",
         "team2": "RUS",
         "attackersId": "null",
-        "layerImage": "/images/YehorivkaRAASv2_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/YehorivkaRAASv2.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Yehorivka Invasion v1",
         "team1": "US",
         "team2": "RUS",
         "attackersId": 2,
-        "layerImage": "/images/YehorivkaINVv1_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/YehorivkaINVv1.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Yehorivka Invasion v2",
         "team1": "US",
         "team2": "RUS",
         "attackersId": 2,
-        "layerImage": "/images/YehorivkaINVv2_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/YehorivkaINVv2.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     },
     {
         "name": "Yehorivka Skirmish v1",
         "team1": "US",
         "team2": "RUS",
         "attackersId": "null",
-        "layerImage": "/images/YehorivkaSKIRv1_12-1.PNG",
-        "imageVers": 12.1,
-        "factionDataVers": 12.1
+        "layerImage": "/images/YehorivkaSkirmishv1.PNG",
+        "imageVers": 12.2,
+        "factionDataVers": 12.2
     }
+
 ];
 
 export default names;
